@@ -1,14 +1,22 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { AuthContext } from "../contexts/AuthProvider"
 import { Link, NavLink } from "react-router-dom"
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext)
+    const [showMenu, setShowMenu] = useState(false)
 
     const handleLogOut = () => {
         logOut()
             .then(() => { console.log("log out successful") })
             .catch(() => { console.log("error logging out") })
+    }
+
+    const handleShowMenu = () => {
+        setShowMenu(true)
+    }
+    const handleHideMenu = () => {
+        setShowMenu(false)
     }
 
     const navItems = (
@@ -56,20 +64,20 @@ const Header = () => {
                 <div className="navbar-end">
                     {user ?
                         <div className="flex items-center gap-4">
-                            <div className="dropdown dropdown-end z-30">
-                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                            <div className="z-30 relative">
+                                <div className="btn btn-ghost btn-circle avatar" onMouseEnter={handleShowMenu} onMouseLeave={handleHideMenu}>
                                     <div className="w-10 rounded-full">
                                         <img
                                             alt="Tailwind CSS Navbar component"
                                             src={user?.photoURL} />
                                     </div>
                                 </div>
-                                <ul
-                                    tabIndex={0}
-                                    className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                                    <li><a className="font-bold">Welcome, {user?.displayName}</a></li>
-                                    <li><a onClick={handleLogOut}>Logout</a></li>
-                                </ul>
+                                <div className={`absolute top-[80%] ${showMenu ? "flex" : "hidden"}`} onMouseEnter={handleShowMenu} onMouseLeave={handleHideMenu}>
+                                    <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                                        <li><a className="font-bold">Welcome, {user?.displayName}</a></li>
+                                        <li><a onClick={handleLogOut}>Logout</a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                         :

@@ -2,6 +2,9 @@ import { createBrowserRouter, Navigate } from "react-router-dom";
 import App from "../layouts/App";
 import Error from "../pages/error/Error";
 import Auth from "../layouts/Auth";
+import Login from "../pages/auth/login/Login";
+import Register from "../pages/auth/register/Register";
+import PrivateAlt from "./PrivateAlt";
 
 const router = createBrowserRouter([
     {
@@ -27,12 +30,11 @@ const router = createBrowserRouter([
             },
             {
                 path: '/auth/login',
+                element: <PrivateAlt><Login /></PrivateAlt>
             },
             {
                 path: '/auth/register',
-            },
-            {
-                path: '/auth/forget-password',
+                element: <PrivateAlt><Register /></PrivateAlt>
             },
         ]
     }
