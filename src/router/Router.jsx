@@ -5,6 +5,7 @@ import Auth from "../layouts/Auth";
 import Login from "../pages/auth/login/Login";
 import Register from "../pages/auth/register/Register";
 import PrivateAlt from "./PrivateAlt";
+import Home from "../pages/home/Home";
 
 const router = createBrowserRouter([
     {
@@ -14,7 +15,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <h1>hello</h1>
+                element: <Home />
             }
 
         ]

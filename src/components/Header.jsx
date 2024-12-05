@@ -1,6 +1,7 @@
 import { useContext, useState } from "react"
 import { AuthContext } from "../contexts/AuthProvider"
 import { Link, NavLink } from "react-router-dom"
+import { toast } from "react-toastify"
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext)
@@ -8,8 +9,8 @@ const Header = () => {
 
     const handleLogOut = () => {
         logOut()
-            .then(() => { console.log("log out successful") })
-            .catch(() => { console.log("error logging out") })
+            .then(() => { toast.warn("User Logged Out") })
+            .catch(() => { toast.error("Something Went Wrong") })
     }
 
     const handleShowMenu = () => {

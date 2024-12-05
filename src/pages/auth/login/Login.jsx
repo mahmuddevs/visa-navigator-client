@@ -3,6 +3,7 @@ import { FcGoogle } from "react-icons/fc"
 import { Link, useLocation, useNavigate } from "react-router-dom"
 import { FaEye, FaEyeSlash } from "react-icons/fa"
 import { AuthContext } from "../../../contexts/AuthProvider"
+import { toast } from "react-toastify"
 
 const Login = () => {
     const [showPass, setShowPass] = useState(false)
@@ -37,12 +38,12 @@ const Login = () => {
     const handleGoogleLogin = () => {
         loginWithGoogle()
             .then(() => {
-                // toast.success("Sign In Successful")
+                toast.success("Sign In Successful")
                 navigate(location?.state ? location.state : '/')
             })
             .catch(() => {
                 setLoading(false)
-                // toast.error("Sign In Faild")
+                toast.error("Sign In Faild")
             })
     }
 

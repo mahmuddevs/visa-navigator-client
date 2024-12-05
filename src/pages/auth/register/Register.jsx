@@ -1,6 +1,6 @@
 import { useContext, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-// import { toast } from "react-toastify"
+import { toast } from "react-toastify"
 import { FcGoogle } from "react-icons/fc"
 import { FaEye, FaEyeSlash } from "react-icons/fa"
 import { AuthContext } from "../../../contexts/AuthProvider"
@@ -50,30 +50,29 @@ const Register = () => {
 
         registerUser(email, password)
             .then(() => {
-                // toast.success("Registration Successful")
+                toast.success("Registration Successful")
                 updateDetails(name, photoUrl)
                     .then(() => { navigate('/') })
                     .catch(() => {
                         setLoading(false)
-                        // toast.error("User Update Failed")
+                        toast.error("User Update Failed")
                     })
             })
             .catch(() => {
                 setLoading(false)
-                // toast.error("Registration Failed")
+                toast.error("Registration Failed")
             })
     }
 
     const handleGoogleLogin = () => {
         loginWithGoogle()
             .then(() => {
-                // toast.success("Sign In Successful")
-                // toast.warn("Please Update the Photo from My Profile Page")
+                toast.success("Sign In Successful")
                 navigate(location?.state ? location.state : '/')
             })
             .catch(() => {
                 setLoading(false)
-                // toast.error("Sign In Faild")
+                toast.error("Sign In Faild")
             })
     }
 

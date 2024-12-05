@@ -35,16 +35,15 @@ const AuthProvider = ({ children }) => {
         return signOut(auth)
     }
 
-    const forgotPassword = (email) => {
-        return sendPasswordResetEmail(auth, email)
-    }
+    // const forgotPassword = (email) => {
+    //     return sendPasswordResetEmail(auth, email)
+    // }
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser)
             setLoading(false)
         })
-
         return () => {
             unsubscribe()
         }
@@ -59,8 +58,7 @@ const AuthProvider = ({ children }) => {
         loginWithGoogle,
         registerUser,
         updateDetails,
-        logOut,
-        forgotPassword
+        logOut
     }
 
     return (
