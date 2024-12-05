@@ -7,10 +7,16 @@ const VisaCard = () => {
                     alt="Shoes" />
             </figure>
             <div className="card-body">
-                <h2 className="card-title">Shoes!</h2>
-                <p>If a dog chews shoes whose shoes does he choose?</p>
-                <div className="card-actions justify-end">
-                    <button className="btn btn-primary">Buy Now</button>
+                <h2 className="card-title">Country: </h2>
+                <ul className="space-y-2 mb-4">
+                    <li>Visa Type: </li>
+                    <li>Processing Time:</li>
+                    <li>Fee:</li>
+                    <li>Validity:</li>
+                    <li>Application Method:</li>
+                </ul>
+                <div className="card-actions justify-start">
+                    <button className="px-4 py-2.5  border-0 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg shadow-md hover:shadow-lg">See Details</button>
                 </div>
             </div>
         </div>

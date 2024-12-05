@@ -49,7 +49,7 @@ const Login = () => {
 
     return (
         <>
-            <div className="sm:hero bg-base-200 min-h-[70vh]">
+            <div className="sm:hero min-h-[70vh]">
                 <div className="w-full hero-content flex-col lg:flex-row-reverse">
                     <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
                         <h2 className="text-center text-inherit text-3xl font-bold pt-8">Login</h2>
@@ -82,7 +82,7 @@ const Login = () => {
                                     </label>
                                 </div>
                                 <div className="form-control">
-                                    <button className="btn bg-primaryBtn rounded-2xl text-white hover:text-black">Login</button>
+                                    <button className="btn bg-gradient-to-r from-green-200 to-blue-300">Login</button>
                                 </div>
                             </form>
                             <div className="text-center text-md font-semi">Or SignIn With</div>
