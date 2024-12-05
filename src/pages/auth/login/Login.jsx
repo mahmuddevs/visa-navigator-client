@@ -76,6 +76,9 @@ const Login = () => {
                                             }
                                         </div>
                                     </div>
+                                    <label className="label">
+                                        <a className="label-text hover:underline cursor-pointer">Forgot Password?</a>
+                                    </label>
                                     <label className="label text-sm">
                                         Don't Have an Account?
                                         <Link to='/auth/register' className="label-text-alt link link-hover">Register</Link>
