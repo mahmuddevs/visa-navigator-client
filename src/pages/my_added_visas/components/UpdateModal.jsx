@@ -1,8 +1,7 @@
+import { validatePassword } from "firebase/auth"
 import { useRef } from "react"
 
 const UpdateModal = ({ item = 0 }) => {
-
-
     const { _id, countryName, countryImg, visaType, processingTime, requiredDocuments, description, minAge, fee, validity, applicationMethod } = item
     const formRef = useRef()
 
@@ -52,23 +51,21 @@ const UpdateModal = ({ item = 0 }) => {
             applicationMethod
         }
 
-        console.log(formValues)
-
-        // fetch('http://localhost:3000/add-visa', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify(formValues)
-        // })
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         if (data.acknowledged) {
-        //             toast.success('Your Visa Is Added Successfully')
-        //         }
-        //         formRef.current.reset();
-        //     })
-        //     .catch(err => toast.error('There Is A Problem!'))
+        fetch(`http://localhost:3000//visas/${_id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formValues)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    toast.success('Your Visa Updated Successfully')
+                }
+                formRef.current.reset();
+            })
+            .catch(err => toast.error('There Is A Problem!'))
     }
 
     return (
