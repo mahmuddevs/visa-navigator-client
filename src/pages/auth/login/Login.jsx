@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom"
 import { FaEye, FaEyeSlash } from "react-icons/fa"
 import { AuthContext } from "../../../contexts/AuthProvider"
 import { toast } from "react-toastify"
+import { Helmet } from "react-helmet-async"
 
 const Login = () => {
     const [showPass, setShowPass] = useState(false)
@@ -49,6 +50,9 @@ const Login = () => {
 
     return (
         <>
+            <Helmet>
+                <title>Login - Visa Navigator</title>
+            </Helmet>
             <div className="sm:hero min-h-[70vh]">
                 <div className="w-full hero-content flex-col lg:flex-row-reverse">
                     <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">

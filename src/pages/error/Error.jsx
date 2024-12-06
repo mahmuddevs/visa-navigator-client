@@ -1,8 +1,12 @@
+import { Helmet } from "react-helmet-async"
 import { Link } from "react-router-dom"
 
 const Error = () => {
     return (
         <>
+            <Helmet>
+                <title>404 - Visa Navigator</title>
+            </Helmet>
             <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8">
                 <div className="max-w-md w-full space-y-8 text-center">
                     <div className="mb-8">

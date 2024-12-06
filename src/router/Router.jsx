@@ -10,6 +10,8 @@ import AddVisa from "../pages/add_visa/AddVisa";
 import AllVisas from "../pages/all_visas/AllVisas";
 import MyAddedVisas from "../pages/my_added_visas/MyAddedVisas";
 import VisaApplications from "../pages/visa_applications/VisaApplications";
+import VisaDetails from "../pages/visa_details/VisaDetails";
+import Private from "./Private";
 
 const router = createBrowserRouter([
     {
@@ -22,20 +24,24 @@ const router = createBrowserRouter([
                 element: <Home />
             },
             {
-                path: '/all-visas',
+                path: '/visas',
                 element: <AllVisas />
             },
             {
+                path: '/visas/:id',
+                element: <Private><VisaDetails /></Private>
+            },
+            {
                 path: '/add-visa',
-                element: <AddVisa />
+                element: <Private><AddVisa /></Private>
             },
             {
                 path: '/my-added-visas',
-                element: <MyAddedVisas />
+                element: <Private><MyAddedVisas /></Private>
             },
             {
                 path: '/my-visa-applications',
-                element: <VisaApplications />
+                element: <Private><VisaApplications /></Private>
             }
         ]
     },

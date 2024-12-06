@@ -4,6 +4,7 @@ import { toast } from "react-toastify"
 import { FcGoogle } from "react-icons/fc"
 import { FaEye, FaEyeSlash } from "react-icons/fa"
 import { AuthContext } from "../../../contexts/AuthProvider"
+import { Helmet } from "react-helmet-async"
 
 
 const Register = () => {
@@ -78,6 +79,9 @@ const Register = () => {
 
     return (
         <>
+            <Helmet>
+                <title>Register - Visa Navigator</title>
+            </Helmet>
             <div className="sm:hero min-h-[70vh] py-4">
                 <div className="w-full hero-content flex-col lg:flex-row-reverse">
                     <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">

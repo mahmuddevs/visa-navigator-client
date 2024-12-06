@@ -23,7 +23,7 @@ const Header = () => {
     const navItems = (
         <>
             <li><NavLink to="/">Home</NavLink></li>
-            <li><NavLink to="/all-visas">All Visas</NavLink></li>
+            <li><NavLink to="/visas">All Visas</NavLink></li>
             {user && <li><NavLink to="/add-visa">Add Visa</NavLink></li>}
             {user && <li><NavLink to="/my-added-visas">My Added Visas</NavLink></li>}
             {user && <li><NavLink to="/my-visa-applications">My Visa Applications</NavLink></li>}

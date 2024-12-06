@@ -1,9 +1,10 @@
-import { useContext } from "react"
+import { useContext, useRef } from "react"
 import { AuthContext } from "../../../contexts/AuthProvider"
 import { toast } from "react-toastify"
 
 const AddVisaForm = () => {
     const { user } = useContext(AuthContext)
+    const formRef = useRef()
 
     const handleAddVisa = (e) => {
         e.preventDefault()
@@ -18,12 +19,21 @@ const AddVisaForm = () => {
         const fee = parseFloat(form.get('fee'))
         const validity = form.get('validity')
         const applicationMethod = form.get('application_method')
+        const validPassport = form.get('valid_passport')
+        const visaApplicationForm = form.get('visa_application_form')
+        const passportSizedPhoto = form.get('passport_sized_photo')
 
-        const requiredDocuments = {
-            validPassport: form.get('valid_passport') === 'on',
-            visaApplicationForm: form.get('visa_application_form') === 'on',
-            passportSizedPhoto: form.get('passport_sized_photo') === 'on',
-        };
+        const requiredDocuments = []
+
+        if (validPassport) {
+            requiredDocuments.push(validPassport)
+        }
+        if (visaApplicationForm) {
+            requiredDocuments.push(visaApplicationForm)
+        }
+        if (passportSizedPhoto) {
+            requiredDocuments.push(passportSizedPhoto)
+        }
 
         const formValues = {
             countryName,
@@ -47,13 +57,17 @@ const AddVisaForm = () => {
             body: JSON.stringify(formValues)
         })
             .then(res => res.json())
-            .then(data => console.log(data))
-            .catch(err => toast.error('problem'))
-
+            .then(data => {
+                if (data.acknowledged) {
+                    toast.success('Your Visa Is Added Successfully')
+                }
+                formRef.current.reset();
+            })
+            .catch(err => toast.error('There Is A Problem!'))
     }
 
     return (
-        <form className="card-body max-w-lg mx-auto" onSubmit={handleAddVisa}>
+        <form ref={formRef} className="card-body max-w-lg mx-auto" onSubmit={handleAddVisa}>
             <div className="form-control">
                 <label className="label">
                     <span className="label-text">Country Name</span>
@@ -92,15 +106,15 @@ const AddVisaForm = () => {
                 <div className="grid grid-cols-2">
                     <label className="label cursor-pointer justify-start gap-4">
                         <span className="label-text">Valid passport</span>
-                        <input type="checkbox" name="valid_passport" className="checkbox checkbox-primary" />
+                        <input type="checkbox" name="valid_passport" value='Valid Passport' className="checkbox checkbox-primary" />
                     </label>
                     <label className="label cursor-pointer justify-start gap-4">
                         <span className="label-text">Visa application form</span>
-                        <input type="checkbox" name="visa_application_form" className="checkbox checkbox-primary" />
+                        <input type="checkbox" name="visa_application_form" value='Visa Application Form' className="checkbox checkbox-primary" />
                     </label>
                     <label className="label cursor-pointer justify-start gap-4">
                         <span className="label-text">Recent passport-sized photograph</span>
-                        <input type="checkbox" name="passport_sized_photo" className="checkbox checkbox-primary" />
+                        <input type="checkbox" name="passport_sized_photo" value='Recent Passport-Sized Photograph' className="checkbox checkbox-primary" />
                     </label>
                 </div>
             </div>
@@ -136,7 +150,7 @@ const AddVisaForm = () => {
             </div>
 
             <div className="form-control mt-6">
-                <button className="btn btn-primary">Add visa</button>
+                <button type="submit" className="btn bg-gradient-to-r from-green-200 to-blue-300">Add visa</button>
             </div>
         </form>
     )
