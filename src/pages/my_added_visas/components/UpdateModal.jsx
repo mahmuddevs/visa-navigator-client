@@ -1,4 +1,3 @@
-import { validatePassword } from "firebase/auth"
 import { useRef } from "react"
 
 const UpdateModal = ({ item = 0 }) => {
@@ -51,7 +50,7 @@ const UpdateModal = ({ item = 0 }) => {
             applicationMethod
         }
 
-        fetch(`http://localhost:3000//visas/${_id}`, {
+        fetch(`http://localhost:3000/visas/${_id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

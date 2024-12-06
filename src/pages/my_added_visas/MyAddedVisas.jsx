@@ -32,8 +32,6 @@ const MyAddedVisas = () => {
         document.getElementById('update_visa_modal').showModal()
     }
 
-    console.log(singleVisa)
-
     const handleDeleteVisa = (id) => {
         Swal.fire({
             title: "Are you sure?",
