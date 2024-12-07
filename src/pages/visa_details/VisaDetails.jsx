@@ -1,11 +1,26 @@
 import { useLoaderData } from "react-router-dom"
 import { Helmet } from "react-helmet-async"
+import { toast } from "react-toastify"
+import ApplicationForm from "./components/ApplicationForm"
 
 const VisaDetails = () => {
-
     const data = useLoaderData()
+    const { user, fee } = data
 
-    const handleSubmit = () => { second }
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        const form = new FormData(e.target)
+        const formInput = Object.fromEntries(form)
+
+        const { email, firstName, lastName, appliedDate, fee } = formInput
+        if (!email || !firstName || !lastName || !appliedDate || !fee) {
+            toast.error("Please Fill the Requiured Forms")
+            return
+        }
+        //database work
+
+    }
     return (
         <>
             <Helmet>
@@ -18,29 +33,29 @@ const VisaDetails = () => {
                         <div className="card-body">
                             <h2 className="card-title text-2xl mb-4">Visa Details</h2>
                             <div className="flex items-center space-x-4 mb-4">
-                                <img src={data.countryImg} alt={`${data.countryName} flag`} className="w-16 h-auto rounded-md" />
+                                <img src={data.countryImg} alt={`${data.countryName} flag`} className="w-40 h-auto rounded-md" />
                                 <div>
-                                    <p className="font-semibold text-lg">{data.visaType}</p>
-                                    <p className="text-sm opacity-70">Validity: {data.validity}</p>
+                                    <p className="font-semibold text-2xl">{data.visaType}</p>
+                                    <p className="text-lg opacity-70">Validity: {data.validity}</p>
                                 </div>
                             </div>
-                            <p className="mb-4">{data.description}</p>
+                            <p className="mb-4 text-lg">{data.description}</p>
                             <div className="grid grid-cols-2 gap-4">
                                 <div>
-                                    <p className="font-semibold">Processing Time</p>
-                                    <p className="text-sm opacity-70">{data.processingTime}</p>
+                                    <p className="font-semibold text-xl">Processing Time</p>
+                                    <p className="text-lg opacity-70">{data.processingTime}</p>
                                 </div>
                                 <div>
-                                    <p className="font-semibold">Minimum Age</p>
-                                    <p className="text-sm opacity-70">{data.minAge} years</p>
+                                    <p className="font-semibold text-xl">Minimum Age</p>
+                                    <p className="text-lg opacity-70">{data.minAge} years</p>
                                 </div>
                                 <div>
-                                    <p className="font-semibold">Application Method</p>
-                                    <p className="text-sm opacity-70">{data.applicationMethod}</p>
+                                    <p className="font-semibold text-xl">Application Method</p>
+                                    <p className="text-lg opacity-70">{data.applicationMethod}</p>
                                 </div>
                                 <div>
-                                    <p className="font-semibold">Required Documents</p>
-                                    <ul className="text-sm opacity-70 list-disc list-inside">
+                                    <p className="font-semibold text-xl">Required Documents</p>
+                                    <ul className="text-lg opacity-70 list-disc list-inside">
                                         {data.requiredDocuments.map((doc, index) => (
                                             <li key={index}>{doc}</li>
                                         ))}
@@ -50,74 +65,7 @@ const VisaDetails = () => {
                         </div>
                     </div>
                     <div className="card bg-base-100 shadow-xl">
-                        <div className="card-body">
-                            <h2 className="card-title text-2xl mb-4">Application Form</h2>
-                            <form onSubmit={handleSubmit} className="space-y-4">
-                                <div className="form-control">
-                                    <label htmlFor="email" className="label">
-                                        <span className="label-text">Email</span>
-                                    </label>
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        disabled
-                                        className="input input-bordered w-full"
-                                    />
-                                </div>
-                                <div className="form-control">
-                                    <label htmlFor="firstName" className="label">
-                                        <span className="label-text">First Name</span>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="firstName"
-                                        value=""
-                                        required
-                                        className="input input-bordered w-full"
-                                    />
-                                </div>
-                                <div className="form-control">
-                                    <label htmlFor="lastName" className="label">
-                                        <span className="label-text">Last Name</span>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="lastName"
-                                        required
-                                        className="input input-bordered w-full"
-                                    />
-                                </div>
-                                <div className="form-control">
-                                    <label htmlFor="appliedDate" className="label">
-                                        <span className="label-text">Applied Date</span>
-                                    </label>
-                                    <input
-                                        type="date"
-                                        id="appliedDate"
-                                        className="input input-bordered w-full"
-                                    />
-                                </div>
-                                <div className="form-control">
-                                    <label htmlFor="fee" className="label">
-                                        <span className="label-text">Fee</span>
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="fee"
-                                        disabled
-                                        className="input input-bordered w-full"
-                                    />
-                                </div>
-                                <div className="form-control mt-6">
-                                    <button
-                                        type="submit"
-                                        className="btn btn-primary w-full"
-                                    >
-                                        Apply
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+                        <ApplicationForm handleSubmit={handleSubmit} user={user} fee={fee} />
                     </div>
                 </div>
             </div>
