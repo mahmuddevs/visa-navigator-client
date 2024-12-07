@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react"
 import { AuthContext } from "../../contexts/AuthProvider"
 import Swal from "sweetalert2"
 import { toast } from "react-toastify"
+import NoData from "../../components/NoData"
 
 const VisaApplications = () => {
     const { user } = useContext(AuthContext)
@@ -58,11 +59,19 @@ const VisaApplications = () => {
             <Helmet>
                 <title>My Visa Applications  - Visa Navigator</title>
             </Helmet>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 my-10 md:my-20 w-11/12 sm:container mx-auto gap-4  ">
-                {applications.map((item) => {
-                    return <ApplicationCard key={item._id} item={item} handleDelete={handleDeleteApplication} />
-                })}
+            <div className="text-center max-w-4xl mx-auto space-y-4 my-5 lg:my-10">
+                <h2 className="text-3xl font-bold">My Visa Applications</h2>
             </div>
+            {applications.length > 0 ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 my-10 md:my-20 w-11/12 sm:container mx-auto gap-4  ">
+                    {applications.map((item) => {
+                        return <ApplicationCard key={item._id} item={item} handleDelete={handleDeleteApplication} />
+                    })}
+                </div>
+            ) : (
+                <NoData />
+            )
+            }
         </>
     )
 }

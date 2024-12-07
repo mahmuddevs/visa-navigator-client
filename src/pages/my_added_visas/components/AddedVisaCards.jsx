@@ -2,9 +2,9 @@ const AddedVisaCards = ({ item, updateVisa, deleteVisa }) => {
     const { _id, countryName, countryImg, visaType, processingTime, fee, validity, applicationMethod } = item
 
     return (
-        <div className="card bg-base-100 shadow-xl">
+        <div className="card bg-base-100 shadow-xl rounded-xl">
             <figure>
-                <img className="h-44 md:h-48 w-full"
+                <img className="h-44 md:h-48 w-full rounded-xl"
                     src={countryImg}
                     alt={countryName ? countryName : "N/A"} />
             </figure>

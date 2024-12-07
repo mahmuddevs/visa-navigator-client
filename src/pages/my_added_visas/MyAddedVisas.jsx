@@ -5,6 +5,7 @@ import { AuthContext } from "../../contexts/AuthProvider"
 import { toast } from "react-toastify"
 import Swal from 'sweetalert2'
 import UpdateModal from "./components/UpdateModal"
+import NoData from "../../components/NoData"
 
 const MyAddedVisas = () => {
     const { user } = useContext(AuthContext)
@@ -73,11 +74,17 @@ const MyAddedVisas = () => {
                     <h2 className="text-3xl font-bold">My Added Visas</h2>
                 </div>
                 <UpdateModal item={singleVisa} />
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10 md:mb-20">
-                    {visas.map((item) => {
-                        return <AddedVisaCards key={item._id} item={item} updateVisa={handleUpdateVisa} deleteVisa={handleDeleteVisa} />
-                    })}
-                </div>
+                {
+                    visas.length > 0 ? (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10 md:mb-20">
+                            {visas.map((item) => {
+                                return <AddedVisaCards key={item._id} item={item} updateVisa={handleUpdateVisa} deleteVisa={handleDeleteVisa} />
+                            })}
+                        </div>
+                    ) : (
+                        <NoData />
+                    )
+                }
             </div>
         </>
     )

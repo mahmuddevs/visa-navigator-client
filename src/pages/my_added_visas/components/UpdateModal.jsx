@@ -50,21 +50,23 @@ const UpdateModal = ({ item = 0 }) => {
             applicationMethod
         }
 
-        fetch(`http://localhost:3000/visas/${_id}`, {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(formValues)
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.acknowledged) {
-                    toast.success('Your Visa Updated Successfully')
-                }
-                formRef.current.reset();
-            })
-            .catch(err => toast.error('There Is A Problem!'))
+        console.log(formValues)
+
+        // fetch(`http://localhost:3000/visas/${_id}`, {
+        //     method: 'PUT',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify(formValues)
+        // })
+        //     .then(res => res.json())
+        //     .then(data => {
+        //         if (data.acknowledged) {
+        //             toast.success('Your Visa Updated Successfully')
+        //         }
+        //         formRef.current.reset();
+        //     })
+        //     .catch(err => toast.error('There Is A Problem!'))
     }
 
     return (
@@ -88,13 +90,20 @@ const UpdateModal = ({ item = 0 }) => {
                         <label className="label">
                             <span className="label-text">Visa Type</span>
                         </label>
-                        <select className="select w-full input input-bordered" name="visa_type" defaultValue={visaType} required>
-                            <option value="" defaultValue>Select Visa Type</option>
-                            <option>Tourist Visa</option>
-                            <option>Work Visa</option>
-                            <option>Student Visa</option>
-                            <option>Family Visa</option>
-                            <option>Business Visa</option>
+                        <select
+                            className="select w-full input input-bordered"
+                            name="visa_type"
+                            defaultValue={visaType || ""}
+                            required
+                        >
+                            <option value="">
+                                Select Visa Type
+                            </option>
+                            <option value="Tourist Visa">Tourist Visa</option>
+                            <option value="Work Visa">Work Visa</option>
+                            <option value="Student Visa">Student Visa</option>
+                            <option value="Family Visa">Family Visa</option>
+                            <option value="Business Visa">Business Visa</option>
                         </select>
                     </div>
                     <div className="form-control">
@@ -110,15 +119,15 @@ const UpdateModal = ({ item = 0 }) => {
                         <div className="grid grid-cols-2">
                             <label className="label cursor-pointer justify-start gap-4">
                                 <span className="label-text">Valid passport</span>
-                                <input type="checkbox" name="valid_passport" value='Valid Passport' className="checkbox checkbox-primary" />
+                                <input type="checkbox" name="valid_passport" value='Valid Passport' defaultChecked={requiredDocuments?.includes('Valid Passport')} className="checkbox checkbox-primary" />
                             </label>
                             <label className="label cursor-pointer justify-start gap-4">
                                 <span className="label-text">Visa application form</span>
-                                <input type="checkbox" name="visa_application_form" value='Visa Application Form' className="checkbox checkbox-primary" />
+                                <input type="checkbox" name="visa_application_form" value='Visa Application Form' defaultChecked={requiredDocuments?.includes('Visa Application Form')} className="checkbox checkbox-primary" />
                             </label>
                             <label className="label cursor-pointer justify-start gap-4">
                                 <span className="label-text">Recent passport-sized photograph</span>
-                                <input type="checkbox" name="passport_sized_photo" value='Recent Passport-Sized Photograph' className="checkbox checkbox-primary" />
+                                <input type="checkbox" name="passport_sized_photo" value='Recent Passport-Sized Photograph' defaultChecked={requiredDocuments?.includes('Recent Passport-Sized Photograph')} className="checkbox checkbox-primary" />
                             </label>
                         </div>
                     </div>
@@ -164,3 +173,5 @@ const UpdateModal = ({ item = 0 }) => {
 }
 
 export default UpdateModal
+
+

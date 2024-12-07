@@ -2,22 +2,17 @@ import { useContext, useState } from "react"
 import { AuthContext } from "../contexts/AuthProvider"
 import { Link, NavLink } from "react-router-dom"
 import { toast } from "react-toastify"
+import { Tooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
+
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext)
-    const [showMenu, setShowMenu] = useState(false)
 
-    const handleLogOut = () => {
+    const handleLogout = () => {
         logOut()
             .then(() => { toast.warn("User Logged Out") })
             .catch(() => { toast.error("Something Went Wrong") })
-    }
-
-    const handleShowMenu = () => {
-        setShowMenu(true)
-    }
-    const handleHideMenu = () => {
-        setShowMenu(false)
     }
 
     const navItems = (
@@ -67,18 +62,27 @@ const Header = () => {
                         {user ?
                             <div className="flex items-center gap-4">
                                 <div className="z-30 relative">
-                                    <div className="btn btn-ghost btn-circle avatar" onMouseEnter={handleShowMenu} onMouseLeave={handleHideMenu}>
-                                        <div className="w-10 rounded-full">
+                                    <div className="btn btn-ghost btn-circle avatar">
+                                        <div className="w-10 rounded-full" id="profile-pic">
                                             <img
-                                                alt="Tailwind CSS Navbar component"
+                                                alt={user?.displayName}
                                                 src={user?.photoURL} />
                                         </div>
-                                    </div>
-                                    <div className={`absolute top-[80%] ${showMenu ? "flex" : "hidden"}`} onMouseEnter={handleShowMenu} onMouseLeave={handleHideMenu}>
-                                        <ul className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                                            <li><a className="font-bold">Welcome, {user?.displayName}</a></li>
-                                            <li><a onClick={handleLogOut}>Logout</a></li>
-                                        </ul>
+                                        <Tooltip
+                                            anchorSelect="#profile-pic"
+                                            place="bottom"
+                                            className="!p-2 !rounded-lg !bg-gray-700 !text-white !h-24" clickable
+                                        >
+                                            <div className="flex flex-col justify-center items-center space-y-2 py-2">
+                                                <p className="font-bold text-md">{user?.displayName}</p>
+                                                <button
+                                                    onClick={handleLogout}
+                                                    className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                                                >
+                                                    Logout
+                                                </button>
+                                            </div>
+                                        </Tooltip>
                                     </div>
                                 </div>
                             </div>

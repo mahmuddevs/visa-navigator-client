@@ -1,10 +1,24 @@
+import { Typewriter } from 'react-simple-typewriter'
 const Banner = () => {
     return (
         <div className="lg:container mx-auto">
             <div className="relative w-full h-[45vh] md:h-[75vh]">
                 <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center text-white p-4">
                     <div className="bg-black/30 backdrop-blur-md p-6 rounded-lg max-w-4xl space-y-4">
-                        <h1 className="text-2xl md:text-4xl font-bold">Your Gateway to Global Opportunities</h1>
+                        <h1 className="text-2xl md:text-4xl font-bold">
+                            Your Gateway to <span className='text-[#9ed2f1]'>
+                                <Typewriter
+                                    words={['Global Careers.', 'Academic Dreams.', ' Business Expansion.', 'Adventure and Travel.']}
+                                    loop={true}
+                                    cursor
+                                    cursorStyle="|"
+                                    typeSpeed={70}
+                                    deleteSpeed={50}
+                                    delaySpeed={1000}
+                                />
+                            </span>
+
+                        </h1>
                         <p className="text-base md:text-xl w-10/12 md:w-full mx-auto">
                             Simplify your visa journey with our step-by-step guidance. Whether for travel, study, or work, we’ll help you reach your destination with ease.
                         </p>
