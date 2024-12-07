@@ -2,10 +2,13 @@ import { useLoaderData } from "react-router-dom"
 import { Helmet } from "react-helmet-async"
 import { toast } from "react-toastify"
 import ApplicationForm from "./components/ApplicationForm"
+import { useRef } from "react"
 
 const VisaDetails = () => {
     const data = useLoaderData()
-    const { user, fee } = data
+    const { user, fee, countryName } = data
+
+    const formRef = useRef()
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -19,6 +22,28 @@ const VisaDetails = () => {
             return
         }
         //database work
+        const formValues = {
+            countryName,
+            ...formInput
+        }
+        fetch('http://localhost:3000/application/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formValues)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    toast.success('Your Application Is Added Successfully')
+                }
+                if (data.message) {
+                    toast.warn(data.message)
+                }
+                formRef.current.reset();
+            })
+            .catch(err => toast.error('There Is A Problem!'))
 
     }
     return (
@@ -65,7 +90,7 @@ const VisaDetails = () => {
                         </div>
                     </div>
                     <div className="card bg-base-100 shadow-xl">
-                        <ApplicationForm handleSubmit={handleSubmit} user={user} fee={fee} />
+                        <ApplicationForm handleSubmit={handleSubmit} user={user} fee={fee} formRef={formRef} />
                     </div>
                 </div>
             </div>

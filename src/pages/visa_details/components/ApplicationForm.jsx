@@ -1,9 +1,9 @@
-const ApplicationForm = ({ handleSubmit, user, fee }) => {
+const ApplicationForm = ({ handleSubmit, user, fee, formRef }) => {
     return (
         <>
             <div className="card-body">
                 <h2 className="card-title text-2xl mb-4">Application Form</h2>
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-4" ref={formRef}>
                     <div className="form-control">
                         <label htmlFor="email" className="label">
                             <span className="label-text">Email</span>

@@ -61,6 +61,9 @@ const AddVisaForm = () => {
                 if (data.acknowledged) {
                     toast.success('Your Visa Is Added Successfully')
                 }
+                if (data.message) {
+                    toast.warn(data.message)
+                }
                 formRef.current.reset();
             })
             .catch(err => toast.error('There Is A Problem!'))
