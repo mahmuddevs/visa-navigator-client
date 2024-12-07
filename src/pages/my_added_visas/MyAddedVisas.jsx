@@ -51,7 +51,7 @@ const MyAddedVisas = () => {
                         if (data.deletedCount) {
                             Swal.fire({
                                 title: "Deleted!",
-                                text: "Your file has been deleted.",
+                                text: "Visa has been deleted.",
                                 icon: "success"
                             });
                             const remainingData = visas.filter(item => item._id !== id)
@@ -61,7 +61,6 @@ const MyAddedVisas = () => {
                     .catch(err => toast.error("Something Went Wrong!"))
             }
         });
-
     }
 
     return (

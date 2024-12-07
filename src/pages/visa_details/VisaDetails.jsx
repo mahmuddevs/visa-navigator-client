@@ -6,8 +6,7 @@ import { useRef } from "react"
 
 const VisaDetails = () => {
     const data = useLoaderData()
-    const { user, fee, countryName } = data
-
+    const { countryName, countryImg, visaType, processingTime, fee, validity, applicationMethod, user } = data
     const formRef = useRef()
 
     const handleSubmit = (e) => {
@@ -23,7 +22,7 @@ const VisaDetails = () => {
         }
         //database work
         const formValues = {
-            countryName,
+            countryName, countryImg, visaType, processingTime, fee, validity, applicationMethod,
             ...formInput
         }
         fetch('http://localhost:3000/application/add', {
@@ -52,13 +51,13 @@ const VisaDetails = () => {
                 <title>{data.countryName}  - Visa Navigator</title>
             </Helmet>
             <div className="container mx-auto px-4 py-8">
-                <h1 className="text-4xl font-bold text-center mb-8">{data.countryName} Visa Application</h1>
+                <h1 className="text-4xl font-bold text-center mb-8">{countryName} Visa Application</h1>
                 <div className="grid md:grid-cols-2 gap-8">
                     <div className="card bg-base-100 shadow-xl">
                         <div className="card-body">
                             <h2 className="card-title text-2xl mb-4">Visa Details</h2>
                             <div className="flex items-center space-x-4 mb-4">
-                                <img src={data.countryImg} alt={`${data.countryName} flag`} className="w-40 h-auto rounded-md" />
+                                <img src={countryImg} alt={`${countryName} flag`} className="w-40 h-auto rounded-md" />
                                 <div>
                                     <p className="font-semibold text-2xl">{data.visaType}</p>
                                     <p className="text-lg opacity-70">Validity: {data.validity}</p>
