@@ -8,7 +8,7 @@ const VisaCard = ({ item }) => {
                     src={countryImg}
                     alt={countryName ? countryName : "N/A"} />
             </figure>
-            <div className="card-body p-4">
+            <div className="card-body p-4 dark:text-white">
                 <h2 className="card-title text-md md:text-lg"><strong>Country:</strong> {countryName ? countryName : "N/A"}</h2>
                 <ul className="space-y-2 mb-4 text-xs md:text-base">
                     <li><strong className="mr-1">Visa Type:</strong> {visaType ? visaType : "N/A"}</li>

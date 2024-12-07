@@ -2,11 +2,11 @@ import { FaBriefcase, FaGraduationCap, FaHeart, FaPlane } from "react-icons/fa"
 
 const VisaTypes = () => {
     return (
-        <section className="py-16 bg-gray-100">
+        <section className="py-16 bg-gray-100 dark:bg-black/10">
             <div className="container mx-auto px-6 lg:px-20">
                 <div className="text-center max-w-4xl mx-auto space-y-4 my-5 lg:my-10">
-                    <h2 className="text-3xl font-bold">Explore Visa Types</h2>
-                    <p className="text-lg">Discover the different visa options available for travel, work, study, and more. Find the one that fits your needs and start your journey today!
+                    <h2 className="text-3xl font-bold dark:text-white">Explore Visa Types</h2>
+                    <p className="text-lg dark:text-white">Discover the different visa options available for travel, work, study, and more. Find the one that fits your needs and start your journey today!
                     </p>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">

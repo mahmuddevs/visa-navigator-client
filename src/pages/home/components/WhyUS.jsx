@@ -2,11 +2,11 @@ import { FaBalanceScale, FaHeadset, FaLock, FaUserShield } from "react-icons/fa"
 
 const WhyUS = () => {
     return (
-        <section className="py-16 bg-gradient-to-r from-green-200 to-blue-300">
+        <section className="py-16 bg-gradient-to-r from-green-200 to-blue-300 dark:bg-gradient-to-r dark:from-gray-800 dark:to-purple-900">
             <div className="container mx-auto px-6 lg:px-20 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                 <div className="text-left">
-                    <h2 className="text-4xl font-bold text-gray-800 mb-6">Why Choose Us?</h2>
-                    <p className="text-gray-700 mb-6 text-lg">
+                    <h2 className="text-4xl font-bold text-gray-800 mb-6 dark:text-white">Why Choose Us?</h2>
+                    <p className="text-gray-700 mb-6 text-lg dark:text-white">
                         With our services, you’ll find everything you need to apply for an e-visa right here.
                         An easy and stress-free application process without navigating complex embassy websites.
                         Simply provide basic information, and we’ll take care of the rest for a small service fee.

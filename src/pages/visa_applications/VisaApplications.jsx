@@ -71,7 +71,7 @@ const VisaApplications = () => {
             <Helmet>
                 <title>My Visa Applications  - Visa Navigator</title>
             </Helmet>
-            <div className="w-11/12 sm:container mx-auto mb-10 md:mb-20">
+            <div className="w-11/12 sm:container mx-auto mb-10 md:mb-20 dark:text-white">
                 <div className="text-center max-w-4xl mx-auto space-y-4 my-5 lg:my-10">
                     <h2 className="text-3xl font-bold">My Visa Applications</h2>
                 </div>

@@ -71,21 +71,21 @@ const AddVisaForm = () => {
 
     return (
         <form ref={formRef} className="card-body max-w-lg mx-auto" onSubmit={handleAddVisa}>
-            <div className="form-control">
+            <div className="form-control dark:text-white">
                 <label className="label">
-                    <span className="label-text">Country Name</span>
+                    <span className="label-text dark:text-white">Country Name</span>
                 </label>
                 <input name="country_name" type="text" placeholder="country name" className="input input-bordered" required />
             </div>
             <div className="form-control">
                 <label className="label">
-                    <span className="label-text">Country Image</span>
+                    <span className="label-text dark:text-white">Country Image</span>
                 </label>
                 <input name="country_img" type="url" placeholder="country image" className="input input-bordered" required />
             </div>
             <div className="form-control">
                 <label className="label">
-                    <span className="label-text">Visa Type</span>
+                    <span className="label-text dark:text-white">Visa Type</span>
                 </label>
                 <select className="select w-full input input-bordered" name="visa_type" required>
                     <option value="" defaultValue>Select Visa Type</option>
@@ -98,62 +98,62 @@ const AddVisaForm = () => {
             </div>
             <div className="form-control">
                 <label className="label">
-                    <span className="label-text">Processing Time</span>
+                    <span className="label-text dark:text-white">Processing Time</span>
                 </label>
                 <input name="processing_time" type="text" placeholder="processing time" className="input input-bordered" required />
             </div>
             <div className="form-control">
                 <label className="label">
-                    <span className="label-text">Required Documents</span>
+                    <span className="label-text dark:text-white">Required Documents</span>
                 </label>
                 <div className="grid grid-cols-2">
                     <label className="label cursor-pointer justify-start gap-4">
-                        <span className="label-text">Valid passport</span>
+                        <span className="label-text dark:text-white">Valid passport</span>
                         <input type="checkbox" name="valid_passport" value='Valid Passport' className="checkbox checkbox-primary" />
                     </label>
                     <label className="label cursor-pointer justify-start gap-4">
-                        <span className="label-text">Visa application form</span>
+                        <span className="label-text dark:text-white">Visa application form</span>
                         <input type="checkbox" name="visa_application_form" value='Visa Application Form' className="checkbox checkbox-primary" />
                     </label>
                     <label className="label cursor-pointer justify-start gap-4">
-                        <span className="label-text">Recent passport-sized photograph</span>
+                        <span className="label-text dark:text-white">Recent passport-sized photograph</span>
                         <input type="checkbox" name="passport_sized_photo" value='Recent Passport-Sized Photograph' className="checkbox checkbox-primary" />
                     </label>
                 </div>
             </div>
             <div className="form-control">
                 <label className="label">
-                    <span className="label-text">Description</span>
+                    <span className="label-text dark:text-white">Description</span>
                 </label>
                 <textarea name="description" className="textarea textarea-bordered" placeholder="description"></textarea>
             </div>
             <div className="form-control">
                 <label className="label">
-                    <span className="label-text">Age Restriction</span>
+                    <span className="label-text dark:text-white">Age Restriction</span>
                 </label>
                 <input name="min_age" type="number" placeholder="minimum age" className="input input-bordered" min={0} required />
             </div>
             <div className="form-control">
                 <label className="label">
-                    <span className="label-text">Fee</span>
+                    <span className="label-text dark:text-white">Fee</span>
                 </label>
                 <input name="fee" type="number" placeholder="fee" className="input input-bordered" min={0} required />
             </div>
             <div className="form-control">
                 <label className="label">
-                    <span className="label-text">Validity</span>
+                    <span className="label-text dark:text-white">Validity</span>
                 </label>
                 <input name="validity" type="text" placeholder="validity" className="input input-bordered" required />
             </div>
             <div className="form-control">
                 <label className="label">
-                    <span className="label-text">Application Method.</span>
+                    <span className="label-text dark:text-white">Application Method.</span>
                 </label>
                 <input name="application_method" type="text" placeholder="application method." className="input input-bordered" required />
             </div>
 
             <div className="form-control mt-6">
-                <button type="submit" className="btn bg-gradient-to-r from-green-200 to-blue-300">Add visa</button>
+                <button type="submit" className="btn bg-gradient-to-r from-green-200 to-blue-300 dark:bg-gradient-to-r dark:from-purple-800 dark:to-gray-800">Add visa</button>
             </div>
         </form>
     )

@@ -50,7 +50,7 @@ const VisaDetails = () => {
             <Helmet>
                 <title>{data.countryName}  - Visa Navigator</title>
             </Helmet>
-            <div className="container mx-auto px-4 py-8">
+            <div className="container mx-auto px-4 py-8 dark:text-white">
                 <h1 className="text-4xl font-bold text-center mb-8">{countryName} Visa Application</h1>
                 <div className="grid md:grid-cols-2 gap-8">
                     <div className="card bg-base-100 shadow-xl">

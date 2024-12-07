@@ -69,7 +69,7 @@ const MyAddedVisas = () => {
             <Helmet>
                 <title>My Added Visas - Visa Navigator</title>
             </Helmet>
-            <div className="container mx-auto">
+            <div className="container mx-auto dark:text-white">
                 <div className="text-center max-w-4xl mx-auto space-y-4 my-5 lg:my-10">
                     <h2 className="text-3xl font-bold">My Added Visas</h2>
                 </div>

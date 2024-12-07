@@ -4,10 +4,16 @@ import { Link, NavLink } from "react-router-dom"
 import { toast } from "react-toastify"
 import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
+import { AiFillMoon } from "react-icons/ai";
+import { IoMdSunny } from "react-icons/io";
+import { ThemeContext } from "../contexts/ThemeProvider";
 
 
 const Header = () => {
     const { user, logOut } = useContext(AuthContext)
+    const { theme, setTheme } = useContext(ThemeContext)
+
+    console.log(theme)
 
     const handleLogout = () => {
         logOut()
@@ -26,7 +32,7 @@ const Header = () => {
     )
 
     return (
-        <div className="bg-gradient-to-r from-green-200 to-blue-300">
+        <div className="bg-gradient-to-r from-green-200 to-blue-300 dark:bg-gradient-to-r dark:from-purple-800 dark:to-gray-800">
             <div className="container mx-auto bg-transparent">
                 <div className="navbar">
                     <div className="navbar-start">
@@ -51,14 +57,15 @@ const Header = () => {
                                 {navItems}
                             </ul>
                         </div>
-                        <Link to='/' className="text-xl ms-4 md:ms-0 font-semibold">Visa Navigator</Link>
+                        <Link to='/' className="text-xl ms-4 md:ms-0 font-semibold dark:text-white">Visa Navigator</Link>
                     </div>
                     <div className="navbar-center hidden lg:flex">
-                        <ul className="menu-horizontal px-1 gap-6">
+                        <ul className="menu-horizontal px-1 gap-6 dark:text-white">
                             {navItems}
                         </ul>
                     </div>
                     <div className="navbar-end">
+                        <button className="text-2xl me-4 dark:text-white">{theme === "light" ? <AiFillMoon onClick={() => { setTheme('dark') }} /> : <IoMdSunny onClick={() => { setTheme('light') }} />}</button>
                         {user ?
                             <div className="flex items-center gap-4">
                                 <div className="z-30 relative">

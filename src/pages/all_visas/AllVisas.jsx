@@ -35,7 +35,7 @@ const AllVisas = () => {
                 <title>All Visas - Visa Navigator</title>
             </Helmet>
             <div className="w-11/12 sm:container mx-auto mb-10 md:mb-20">
-                <div className="text-center max-w-4xl mx-auto space-y-4 my-5 lg:my-10">
+                <div className="text-center max-w-4xl mx-auto space-y-4 my-5 lg:my-10 dark:text-white">
                     <h2 className="text-3xl font-bold">All Visas</h2>
                     <p className="text-lg">Browse all visa categories in one place to find the perfect match for your travel needs.
                     </p>
