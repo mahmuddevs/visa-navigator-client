@@ -25,7 +25,7 @@ const VisaDetails = () => {
             countryName, countryImg, visaType, processingTime, fee, validity, applicationMethod,
             ...formInput
         }
-        fetch('http://localhost:3000/application/add', {
+        fetch('https://visa-navigator-fawn.vercel.app/application/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

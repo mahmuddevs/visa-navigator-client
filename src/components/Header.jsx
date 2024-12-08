@@ -13,8 +13,6 @@ const Header = () => {
     const { user, logOut } = useContext(AuthContext)
     const { theme, setTheme } = useContext(ThemeContext)
 
-    console.log(theme)
-
     const handleLogout = () => {
         logOut()
             .then(() => { toast.warn("User Logged Out") })

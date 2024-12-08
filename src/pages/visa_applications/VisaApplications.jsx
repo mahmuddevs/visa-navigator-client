@@ -13,7 +13,7 @@ const VisaApplications = () => {
     const [query, setQuery] = useState('')
 
     useEffect(() => {
-        fetch('http://localhost:3000/application/my-applications', {
+        fetch('https://visa-navigator-fawn.vercel.app/application/my-applications', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -36,7 +36,7 @@ const VisaApplications = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:3000/application/my-applications/${id}`, {
+                fetch(`https://visa-navigator-fawn.vercel.app/application/my-applications/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

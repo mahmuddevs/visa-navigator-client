@@ -1,15 +1,18 @@
 import { Helmet } from "react-helmet-async"
 import AddedVisaCards from "./components/AddedVisaCards"
+import { useContext, useEffect, useRef, useState } from "react"
+import { AuthContext } from "../../contexts/AuthProvider"
 import { toast } from "react-toastify"
 import Swal from 'sweetalert2'
 import NoData from "../../components/NoData"
-import { useContext, useEffect, useState } from "react"
-import { AuthContext } from "../../contexts/AuthProvider"
 
 const MyAddedVisas = () => {
+    const formRef = useRef();
     const { user } = useContext(AuthContext)
-    const email = user.email
     const [visas, setVisas] = useState([])
+    const [singleVisa, setSingleVisa] = useState({})
+    const [visaType, setVisaType] = useState()
+    const email = user.email
 
     useEffect(() => {
         fetch('https://visa-navigator-fawn.vercel.app/my-visas', {
@@ -23,15 +26,15 @@ const MyAddedVisas = () => {
             .then(data => setVisas(data))
     }, [])
 
-    // const handleUpdateVisa = (id) => {
-    //     fetch(`https://visa-navigator-fawn.vercel.app/visas/${id}`)
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             setSingleVisa(data)
-    //             setVisaType(data.visaType)
-    //         })
-    //     document.getElementById('update_visa_modal').showModal()
-    // }
+    const handleUpdateVisa = (id) => {
+        fetch(`https://visa-navigator-fawn.vercel.app/visas/${id}`)
+            .then(res => res.json())
+            .then(data => {
+                setSingleVisa(data)
+                setVisaType(data.visaType)
+            })
+        document.getElementById('update_visa_modal').showModal()
+    }
 
     const handleDeleteVisa = (id) => {
         Swal.fire({
@@ -63,6 +66,80 @@ const MyAddedVisas = () => {
             }
         });
     }
+    const handleUpdateVisaType = (e) => {
+        setVisaType(e.target.value);
+    };
+
+    const handleCloseModal = () => {
+        formRef.current.reset();
+        document.getElementById("update_visa_modal").close();
+    };
+
+    const handleSubmitUpdate = (e) => {
+        e.preventDefault();
+        const form = new FormData(e.target);
+
+        const countryName = form.get("country_name");
+        const countryImg = form.get("country_img");
+        const visaType = form.get("visa_type");
+        const processingTime = form.get("processing_time");
+        const description = form.get("description");
+        const minAge = parseFloat(form.get("min_age"));
+        const fee = parseFloat(form.get("fee"));
+        const validity = form.get("validity");
+        const applicationMethod = form.get("application_method");
+        const validPassport = form.get("valid_passport");
+        const visaApplicationForm = form.get("visa_application_form");
+        const passportSizedPhoto = form.get("passport_sized_photo");
+
+        const requiredDocuments = [];
+
+        if (validPassport) {
+            requiredDocuments.push(validPassport);
+        }
+        if (visaApplicationForm) {
+            requiredDocuments.push(visaApplicationForm);
+        }
+        if (passportSizedPhoto) {
+            requiredDocuments.push(passportSizedPhoto);
+        }
+
+        const formValues = {
+            countryName,
+            countryImg,
+            visaType,
+            processingTime,
+            requiredDocuments,
+            description,
+            minAge,
+            fee,
+            validity,
+            applicationMethod,
+            user: email
+        };
+
+        fetch(`https://visa-navigator-fawn.vercel.app/visas/${singleVisa?._id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formValues)
+        })
+            .then(res => res.json())
+            .then(data => {
+                const updatedVisas = visas.map(item => item._id === singleVisa._id ? formValues : item)
+                setVisas(updatedVisas)
+                if (data.modifiedCount) {
+                    toast.success('Your Visa Updated Successfully');
+                    setSingleVisa(null)
+                }
+                if (!data.modifiedCount) {
+                    toast.warn('Please Edit Something');
+                }
+                document.getElementById("update_visa_modal").close();
+            })
+            .catch(err => toast.error('There Is A Problem!'));
+    };
 
 
     return (
@@ -74,7 +151,7 @@ const MyAddedVisas = () => {
                 <div className="text-center max-w-4xl mx-auto space-y-4 my-5 lg:my-10">
                     <h2 className="text-3xl font-bold">My Added Visas</h2>
                 </div>
-                {/* <dialog id="update_visa_modal" className="modal modal-bottom sm:modal-middle">
+                <dialog id="update_visa_modal" className="modal modal-bottom sm:modal-middle">
                     <div className="modal-box">
                         <h3 className="font-bold text-lg">Update Visa Info</h3>
                         <form ref={formRef} className="card-body max-w-lg mx-auto" onSubmit={handleSubmitUpdate}>
@@ -252,12 +329,12 @@ const MyAddedVisas = () => {
                             </div>
                         </form>
                     </div>
-                </dialog> */}
+                </dialog>
                 {
                     visas.length > 0 ? (
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10 md:mb-20">
-                            {visas.map((item, index) => {
-                                return <AddedVisaCards key={index} item={item} deleteVisa={handleDeleteVisa} visas={visas} setVisas={setVisas} />
+                            {visas.map((item) => {
+                                return <AddedVisaCards key={item._id} item={item} updateVisa={handleUpdateVisa} deleteVisa={handleDeleteVisa} />
                             })}
                         </div>
                     ) : (

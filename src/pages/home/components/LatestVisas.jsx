@@ -6,7 +6,7 @@ const LatestVisas = () => {
     const [data, setData] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:3000/latest-visas')
+        fetch('https://visa-navigator-fawn.vercel.app/latest-visas')
             .then(res => res.json())
             .then(data => setData(data))
             .catch(err => toast.error("Something Went Wrong!"))

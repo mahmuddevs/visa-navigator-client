@@ -30,7 +30,7 @@ const router = createBrowserRouter([
             {
                 path: '/visas/:id',
                 element: <Private><VisaDetails /></Private>,
-                loader: async ({ params }) => await fetch(`http://localhost:3000/visas/${params.id}`)
+                loader: async ({ params }) => await fetch(`https://visa-navigator-fawn.vercel.app/visas/${params.id}`)
             },
             {
                 path: '/add-visa',

@@ -49,7 +49,7 @@ const AddVisaForm = () => {
             user: user.email
         }
 
-        fetch('http://localhost:3000/add-visa', {
+        fetch('https://visa-navigator-fawn.vercel.app/add-visa', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

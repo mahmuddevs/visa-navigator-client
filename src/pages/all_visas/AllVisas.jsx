@@ -9,7 +9,7 @@ const AllVisas = () => {
     const [data, setData] = useState([])
 
     useEffect(() => {
-        fetch('http://localhost:3000/all-visas')
+        fetch('https://visa-navigator-fawn.vercel.app/all-visas')
             .then(res => res.json())
             .then(data => setData(data))
             .catch(err => toast.error("Something Went Wrong!"))
@@ -18,7 +18,7 @@ const AllVisas = () => {
     const handleFilter = (e) => {
         const visaType = e.target.value
 
-        fetch('http://localhost:3000/visas/filter-by-visa-type', {
+        fetch('https://visa-navigator-fawn.vercel.app/visas/filter-by-visa-type', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
