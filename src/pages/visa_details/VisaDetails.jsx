@@ -2,11 +2,14 @@ import { useLoaderData } from "react-router-dom"
 import { Helmet } from "react-helmet-async"
 import { toast } from "react-toastify"
 import ApplicationForm from "./components/ApplicationForm"
-import { useRef } from "react"
+import { useContext, useRef } from "react"
+import { AuthContext } from "../../contexts/AuthProvider"
 
 const VisaDetails = () => {
+    const { user } = useContext(AuthContext)
+    const email = user.email
     const data = useLoaderData()
-    const { countryName, countryImg, visaType, processingTime, fee, validity, applicationMethod, user } = data
+    const { countryName, countryImg, visaType, processingTime, fee, validity, applicationMethod } = data
     const formRef = useRef()
 
     const handleSubmit = (e) => {
@@ -50,7 +53,7 @@ const VisaDetails = () => {
             <Helmet>
                 <title>{data.countryName}  - Visa Navigator</title>
             </Helmet>
-            <div className="container mx-auto px-4 py-8 dark:text-white">
+            <div className="w-11/12 sm:container mx-auto my-10 md:my-20 !mt-28 dark:text-white">
                 <h1 className="text-4xl font-bold text-center mb-8">{countryName} Visa Application</h1>
                 <div className="grid md:grid-cols-2 gap-8">
                     <div className="card bg-base-100 shadow-xl">
@@ -89,7 +92,7 @@ const VisaDetails = () => {
                         </div>
                     </div>
                     <div className="card bg-base-100 shadow-xl">
-                        <ApplicationForm handleSubmit={handleSubmit} user={user} fee={fee} formRef={formRef} />
+                        <ApplicationForm handleSubmit={handleSubmit} user={email} fee={fee} formRef={formRef} />
                     </div>
                 </div>
             </div>

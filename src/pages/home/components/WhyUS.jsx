@@ -2,7 +2,7 @@ import { FaBalanceScale, FaHeadset, FaLock, FaUserShield } from "react-icons/fa"
 
 const WhyUS = () => {
     return (
-        <section className="py-16 bg-gradient-to-r from-green-200 to-blue-300 dark:bg-gradient-to-r dark:from-gray-800 dark:to-purple-900">
+        <section className="py-16 bg-[#d0e8f7] dark:bg-[#1d232a]">
             <div className="container mx-auto px-6 lg:px-20 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                 <div className="text-left">
                     <h2 className="text-4xl font-bold text-gray-800 mb-6 dark:text-white">Why Choose Us?</h2>
@@ -11,7 +11,7 @@ const WhyUS = () => {
                         An easy and stress-free application process without navigating complex embassy websites.
                         Simply provide basic information, and we’ll take care of the rest for a small service fee.
                     </p>
-                    <button className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-lg shadow-md hover:shadow-lg">
+                    <button className="bg-light-primary dark:bg-dark-primary hover:bg-light-secondary text-white px-6 py-3 rounded-lg shadow-md hover:shadow-lg">
                         Get Started!
                     </button>
                 </div>

@@ -6,11 +6,13 @@ const ThemeProvider = ({ children }) => {
     const [theme, setTheme] = useState("light")
 
     if (theme === 'light') {
+        document.documentElement.classList.add("body-light");
         document.documentElement.classList.remove("dark");
         document.documentElement.setAttribute("data-theme", "light");
     }
     if (theme === 'dark') {
         document.documentElement.classList.add("dark");
+        document.documentElement.classList.remove("body-light");
         document.documentElement.setAttribute("data-theme", "dark");
     }
 

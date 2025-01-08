@@ -20,7 +20,9 @@
     "react-simple-typewriter": "^5.0.1",
     "react-toastify": "^10.0.6",
     "react-tooltip": "^5.28.0",
-    "sweetalert2": "^11.14.5"
+    "recharts": "^2.15.0",
+    "sweetalert2": "^11.14.5",
+    "swiper": "^11.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",

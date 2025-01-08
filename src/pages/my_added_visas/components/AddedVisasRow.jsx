@@ -1,8 +1,8 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useRef } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider";
 import { toast } from "react-toastify";
 
-const AddedVisaCards = ({ item, deleteVisa, visas, setVisas }) => {
+const AddedVisasRow = ({ item, deleteVisa, visas, setVisas, index }) => {
     const formRef = useRef();
     const modalRef = useRef()
     const { user } = useContext(AuthContext)
@@ -89,7 +89,7 @@ const AddedVisaCards = ({ item, deleteVisa, visas, setVisas }) => {
 
 
     return (
-        <div className="card bg-base-100 max-w-xs w-full h-full shadow-xl rounded-md hover:scale-105 duration-500 transition-transform">
+        <>
             <dialog ref={modalRef} className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box w-11/12 !max-w-4xl mx-auto">
                     <h3 className="font-bold text-lg">Update Visa Info</h3>
@@ -263,7 +263,7 @@ const AddedVisaCards = ({ item, deleteVisa, visas, setVisas }) => {
                         <div className="form-control mt-6 space-y-8">
                             <button
                                 type="submit"
-                                className="btn bg-gradient-to-r from-green-200 to-blue-300 dark:bg-gradient-to-r dark:from-purple-800 dark:to-gray-800"
+                                className="btn bg-light-primary dark:bg-dark-primary hover:bg-light-primary/80 dark:hover:bg-dark-primary/80 text-white"
                             >
                                 Update Visa
                             </button>
@@ -274,40 +274,40 @@ const AddedVisaCards = ({ item, deleteVisa, visas, setVisas }) => {
                     </form>
                 </div>
             </dialog>
-
-            <figure className="p-2 pb-0">
-                <img className="h-28 md:h-44 w-full rounded-md"
-                    src={countryImg}
-                    alt={countryName ? countryName : "N/A"} />
-            </figure>
-            <div className="card-body p-2 md:p-4 dark:text-white">
-                <ul className="text-xs md:text-base grid grid-cols-2 items-stretch gap-2">
-                    <li className="justify-self-start place-self-center">
-                        <h4 className="card-title text-sm md:text-lg">{countryName ? countryName : "N/A"}</h4>
-                    </li>
-                    <li className="justify-self-end place-self-center">
-                        {visaType ? visaType : "N/A"}
-                    </li>
-                    <li className="justify-self-start place-self-center">
-                        {processingTime ? processingTime : "N/A"}
-                    </li>
-                    <li className="justify-self-end place-self-center">
-                        $ {fee ? fee : "N/A"}
-                    </li>
-                    <li className="col-span-2">
-                        {validity ? validity : "N/A"}
-                    </li>
-                    <li className="col-span-2">
-                        {applicationMethod ? applicationMethod : "N/A"}
-                    </li>
-                </ul>
-            </div>
-            <div className="card-actions justify-start p-2">
-                <div onClick={() => { handleUpdateVisa(_id) }} className="btn bg-light-primary text-white text-xs md:text-sm">Update</div>
-                <div onClick={() => { deleteVisa(_id) }} className="btn bg-light-accent text-white text-xs md:text-sm">Delete</div>
-            </div>
-        </div>
+            <tr className="odd:bg-gray-100 even:bg-gray-50 dark:odd:bg-gray-700 dark:even:bg-gray-600">
+                <td className="border border-gray-300 dark:border-gray-700 px-4 py-2">{index + 1}</td>
+                <td className="border border-gray-300 dark:border-gray-700 px-4 py-2">{countryName || "N/A"}</td>
+                <td className="border border-gray-300 dark:border-gray-700 px-4 py-2">
+                    <img
+                        src={countryImg}
+                        alt={countryName || "N/A"}
+                        className="h-10 w-16 rounded-md"
+                    />
+                </td>
+                <td className="border border-gray-300 dark:border-gray-700 px-4 py-2">{visaType || "N/A"}</td>
+                <td className="border border-gray-300 dark:border-gray-700 px-4 py-2">{processingTime || "N/A"}</td>
+                <td className="border border-gray-300 dark:border-gray-700 px-4 py-2">$ {fee || "N/A"}</td>
+                <td className="border border-gray-300 dark:border-gray-700 px-4 py-2">{validity || "N/A"}</td>
+                <td className="border border-gray-300 dark:border-gray-700 px-4 py-2">{applicationMethod || "N/A"}</td>
+                <td className="border border-gray-300 dark:border-gray-700 px-4 py-2">
+                    <div className="flex flex-col md:flex-row gap-2">
+                        <button
+                            onClick={() => handleUpdateVisa(_id)}
+                            className="py-2 px-4 w-full rounded-lg bg-light-primary  hover:bg-light-primary/90 hover:shadow-lg text-white text-xs md:text-sm"
+                        >
+                            Update
+                        </button>
+                        <button
+                            onClick={() => deleteVisa(_id)}
+                            className="py-2 px-4 w-full rounded-lg bg-light-accent  hover:bg-light-accent/90 hover:shadow-lg text-white text-xs md:text-sm"
+                        >
+                            Delete
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </>
     )
 }
 
-export default AddedVisaCards
+export default AddedVisasRow

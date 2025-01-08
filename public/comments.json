@@ -1,0 +1,62 @@
+[
+    {
+        "name": "John Smith",
+        "rating": 5,
+        "comment": "The process was seamless and the support team was incredibly helpful. Got my visa approved in no time!",
+        "image": "https://randomuser.me/api/portraits/men/1.jpg"
+    },
+    {
+        "name": "Emily Johnson",
+        "rating": 4.5,
+        "comment": "Great service! The step-by-step guidance made the whole process stress-free.",
+        "image": "https://randomuser.me/api/portraits/women/2.jpg"
+    },
+    {
+        "name": "Carlos Rivera",
+        "rating": 5,
+        "comment": "Exceptional service! I couldn't have asked for a better experience. Highly recommend.",
+        "image": "https://randomuser.me/api/portraits/men/3.jpg"
+    },
+    {
+        "name": "Aisha Khan",
+        "rating": 4,
+        "comment": "Helpful staff and clear instructions. Slightly longer wait time than expected, but still very satisfied.",
+        "image": "https://randomuser.me/api/portraits/women/4.jpg"
+    },
+    {
+        "name": "Liam Nguyen",
+        "rating": 5,
+        "comment": "Fast and reliable! Got my student visa approved faster than I anticipated.",
+        "image": "https://randomuser.me/api/portraits/men/5.jpg"
+    },
+    {
+        "name": "Sophia Martinez",
+        "rating": 4.8,
+        "comment": "Fantastic service! They guided me through every step and addressed all my concerns promptly.",
+        "image": "https://randomuser.me/api/portraits/women/6.jpg"
+    },
+    {
+        "name": "Arjun Patel",
+        "rating": 4.7,
+        "comment": "The team is very knowledgeable and professional. My business visa application was handled perfectly.",
+        "image": "https://randomuser.me/api/portraits/men/7.jpg"
+    },
+    {
+        "name": "Mia Chen",
+        "rating": 5,
+        "comment": "I was nervous about the process, but their guidance made it simple and stress-free. Highly recommend!",
+        "image": "https://randomuser.me/api/portraits/women/8.jpg"
+    },
+    {
+        "name": "David Kim",
+        "rating": 4.6,
+        "comment": "The service was excellent. A bit pricey, but totally worth it for the peace of mind.",
+        "image": "https://randomuser.me/api/portraits/men/9.jpg"
+    },
+    {
+        "name": "Emma Wilson",
+        "rating": 5,
+        "comment": "I can't thank them enough! My travel visa was approved without any issues. The best team out there!",
+        "image": "https://randomuser.me/api/portraits/women/10.jpg"
+    }
+]

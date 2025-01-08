@@ -21,20 +21,31 @@ const Header = () => {
 
     const navItems = (
         <>
-            <li><NavLink to="/">Home</NavLink></li>
-            <li><NavLink to="/visas">All Visas</NavLink></li>
-            <li><NavLink to="/add-visa">Add Visa</NavLink></li>
-            <li><NavLink to="/my-added-visas">My Added Visas</NavLink></li>
-            <li><NavLink to="/my-visa-applications">My Visa Applications</NavLink></li>
+            <li className="hover:underline decoration-4 underline-offset-4"><NavLink to="/">Home</NavLink></li>
+            <li className="hover:underline decoration-4 underline-offset-4"><NavLink to="/visas">All Visas</NavLink></li>
+            <li className="hover:underline decoration-4 underline-offset-4"><NavLink to="/about">About</NavLink></li>
+            <li className="hover:underline decoration-4 underline-offset-4"><NavLink to="/contact">Contact</NavLink></li>
+            {
+                user && <>
+                    <li className="hover:underline decoration-4 underline-offset-4"><NavLink to="/add-visa">Add Visa</NavLink></li>
+                    <li className="hover:underline decoration-4 underline-offset-4"><NavLink to="/my-added-visas">My Added Visas</NavLink></li>
+                    <li className="hover:underline decoration-4 underline-offset-4"><NavLink to="/my-visa-applications">My Visa Applications</NavLink></li>
+                </>
+            }
+            {!user && <>
+                <li className="hover:underline decoration-4 underline-offset-4"> <Link to='/auth/login'>Login</Link></li>
+                <li className="hover:underline decoration-4 underline-offset-4"> <Link to='/auth/register'>Register</Link></li>
+            </>
+            }
         </>
     )
 
     return (
-        <div className="bg-gradient-to-r from-green-200 to-blue-300 dark:bg-gradient-to-r dark:from-purple-800 dark:to-gray-800">
-            <div className="container mx-auto bg-transparent">
-                <div className="navbar">
-                    <div className="navbar-start">
-                        <div className="dropdown">
+        <div className="bg-light-primary/70 drop-shadow-xl dark:bg-dark-background fixed top-0 z-50 w-full text-light-texts">
+            <div className="w-11/12 sm:container mx-auto bg-transparent py-4">
+                <div className="flex justify-between items-center">
+                    <div className="place-self-center">
+                        <div className="dropdown md:me-4 lg:me-0">
                             <div tabIndex={0} role="button" className="lg:hidden">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -57,14 +68,12 @@ const Header = () => {
                         </div>
                         <Link to='/' className="text-xl ms-4 md:ms-0 font-semibold dark:text-white">Visa Navigator</Link>
                     </div>
-                    <div className="navbar-center hidden lg:flex">
-                        <ul className="menu-horizontal px-1 gap-6 dark:text-white">
+                    <div className="flex items-center">
+                        <ul className="menu-horizontal hidden lg:flex px-1 gap-6 font-semibold dark:text-white">
                             {navItems}
                         </ul>
-                    </div>
-                    <div className="navbar-end">
-                        <button className="text-2xl me-4 dark:text-white">{theme === "light" ? <AiFillMoon onClick={() => { setTheme('dark') }} /> : <IoMdSunny onClick={() => { setTheme('light') }} />}</button>
-                        {user ?
+                        <button className="text-2xl mx-4 dark:text-white">{theme === "light" ? <AiFillMoon onClick={() => { setTheme('dark') }} /> : <IoMdSunny onClick={() => { setTheme('light') }} />}</button>
+                        {user &&
                             <div className="flex items-center gap-4">
                                 <div className="z-30 relative">
                                     <div className="btn btn-ghost btn-circle avatar">
@@ -82,7 +91,7 @@ const Header = () => {
                                                 <p className="font-bold text-md">{user?.displayName}</p>
                                                 <button
                                                     onClick={handleLogout}
-                                                    className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                                                    className="px-4 py-2 bg-light-primary dark:bg-dark-primary text-white rounded-lg hover:bg-light-primary/80 dark:hover:bg-dark-primary/80"
                                                 >
                                                     Logout
                                                 </button>
@@ -91,12 +100,8 @@ const Header = () => {
                                     </div>
                                 </div>
                             </div>
-                            :
-                            <div className="space-x-4">
-                                <Link to='/auth/login' className="btn btn-sm">Login</Link>
-                                <Link to='/auth/register' className="btn btn-sm">Register</Link>
-                            </div>
                         }
+
                     </div>
                 </div>
             </div>
